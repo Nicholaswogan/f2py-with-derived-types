@@ -16,6 +16,7 @@ module myobjects
   
   type myothertype
     type(mytype) :: my
+    integer :: c
   end type
   
 contains

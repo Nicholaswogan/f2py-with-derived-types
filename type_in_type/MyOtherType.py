@@ -1,12 +1,12 @@
-from _mytype_wrapper import myothertype_wrapper as wrapper
+from _myobjects_wrapper import myothertype_wrapper as wrapper
 from MyType import MyType
 from FortranWrapperSettings import FortranWrapperSettings
 
 class MyOtherType():
     
-    ####################################
-    ### create and destroying mytype ###
-    ####################################
+    ##########################
+    ### create and destroy ###
+    ##########################
     
     def __init__(self):
         my = MyType()
@@ -15,3 +15,15 @@ class MyOtherType():
     
     def __del__(self):
         wrapper.destroy_myothertype(self._ptr)
+        
+    ###########################
+    ### getters and setters ###
+    ###########################
+    
+    @property
+    def c(self):
+        return wrapper.get_c(self._ptr)
+    
+    @c.setter
+    def c(self, new_c):
+        wrapper.set_c(self._ptr, new_c)
