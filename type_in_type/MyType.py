@@ -1,4 +1,5 @@
 from _mytype_wrapper import mytype_wrapper as wrapper
+from FortranWrapperSettings import FortranWrapperSettings
 
 class MyType():
     
