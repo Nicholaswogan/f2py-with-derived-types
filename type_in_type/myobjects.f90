@@ -16,10 +16,17 @@ module myobjects
   
   type myothertype
     type(mytype) :: my
-    integer :: c
+    integer :: c = 0
+  contains
+    procedure :: add2arr
   end type
   
 contains
+  
+  subroutine add2arr(self)
+    class(myothertype), intent(inout) :: self
+    self%my%arr = self%my%arr + self%c
+  end subroutine
   
   subroutine printarr(self, err)
     class(mytype), intent(in) :: self

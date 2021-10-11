@@ -3,8 +3,6 @@ module mytype_wrapper
   use myobjects, only: mytype
   implicit none
   
-  public
-
 contains
   
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

@@ -9,9 +9,8 @@ class MyOtherType():
     ##########################
     
     def __init__(self):
-        my = MyType()
-        self.my = my
-        self._ptr = wrapper.allocate_myothertype(my._ptr)
+        self._ptr, my_ptr = wrapper.allocate_myothertype()
+        self.my = MyType(my_ptr)
     
     def __del__(self):
         wrapper.destroy_myothertype(self._ptr)
@@ -27,3 +26,10 @@ class MyOtherType():
     @c.setter
     def c(self, new_c):
         wrapper.set_c(self._ptr, new_c)
+        
+    #############################
+    ### wrappers for routines ###
+    #############################
+    
+    def add2arr(self):
+        wrapper.add2arr(self._ptr)

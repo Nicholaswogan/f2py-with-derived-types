@@ -1,32 +1,31 @@
 module myothertype_wrapper
   use iso_c_binding
-  use myobjects_alt, only: myothertype_alt
+  use myobjects, only: myothertype
   implicit none
   
-  public
-
 contains
   
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   !!! allocator and destroyer !!!
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   
-  subroutine allocate_myothertype(my_ptr, ptr)
-    !f2py integer(8), intent(in) :: my_ptr
-    type(c_ptr), intent(in) :: my_ptr
+  subroutine allocate_myothertype(ptr, my_ptr)
     !f2py integer(8), intent(out) :: ptr
     type(c_ptr), intent(out) :: ptr
-    type(myothertype_alt), pointer :: myother
+    !f2py integer(8), intent(out) :: my_ptr
+    type(c_ptr), intent(out) :: my_ptr
+    
+    type(myothertype), pointer :: myother
     
     allocate(myother)
-    myother%my = my_ptr
     ptr = c_loc(myother)
+    my_ptr = c_loc(myother)
   end subroutine
   
   subroutine destroy_myothertype(ptr)
     !f2py integer(8), intent(in) :: ptr
     type(c_ptr), intent(in) :: ptr
-    type(myothertype_alt), pointer :: myother
+    type(myothertype), pointer :: myother
     call c_f_pointer(ptr, myother)
     
     deallocate(myother)
@@ -41,7 +40,7 @@ contains
     type(c_ptr), intent(in) :: ptr
     integer, intent(in) :: c
     
-    type(myothertype_alt), pointer :: myother
+    type(myothertype), pointer :: myother
     call c_f_pointer(ptr, myother)
 
     myother%c = c
@@ -52,10 +51,24 @@ contains
     type(c_ptr), intent(in) :: ptr
     integer, intent(out) :: c
     
-    type(myothertype_alt), pointer :: myother
+    type(myothertype), pointer :: myother
     call c_f_pointer(ptr, myother)
     
     c = myother%c
+  end subroutine
+  
+  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  !!! wrappers for subroutines  !!!
+  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  
+  subroutine add2arr(ptr)
+    !f2py integer(8), intent(in) :: ptr
+    type(c_ptr), intent(in) :: ptr
+    
+    type(myothertype), pointer :: myother
+    call c_f_pointer(ptr, myother)
+    
+    call myother%add2arr()
   end subroutine
 
 end module

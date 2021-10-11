@@ -9,9 +9,15 @@ class MyType():
     
     def __init__(self):
         self._ptr = wrapper.allocate_mytype()
+        self.__destroy = True
+        
+    def __init__(self, ptr):
+        self._ptr = ptr
+        self.__destroy = False
         
     def __del__(self):
-        wrapper.destroy_mytype(self._ptr)
+        if self.__destroy:
+            wrapper.destroy_mytype(self._ptr)
         
     ###########################
     ### getters and setters ###
