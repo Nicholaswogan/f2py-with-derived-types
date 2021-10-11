@@ -16,6 +16,7 @@ module myobjects
   
   type myothertype
     type(mytype) :: my
+    type(mytype) :: my1
     integer :: c = 0
   contains
     procedure :: add2arr

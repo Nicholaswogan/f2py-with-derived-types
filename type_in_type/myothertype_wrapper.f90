@@ -9,17 +9,20 @@ contains
   !!! allocator and destroyer !!!
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   
-  subroutine allocate_myothertype(ptr, my_ptr)
+  subroutine allocate_myothertype(ptr, my_ptr, my1_ptr)
     !f2py integer(8), intent(out) :: ptr
     type(c_ptr), intent(out) :: ptr
     !f2py integer(8), intent(out) :: my_ptr
     type(c_ptr), intent(out) :: my_ptr
+    !f2py integer(8), intent(out) :: my1_ptr
+    type(c_ptr), intent(out) :: my1_ptr
     
     type(myothertype), pointer :: myother
     
     allocate(myother)
     ptr = c_loc(myother)
-    my_ptr = c_loc(myother)
+    my_ptr = c_loc(myother%my)
+    my1_ptr = c_loc(myother%my1)
   end subroutine
   
   subroutine destroy_myothertype(ptr)

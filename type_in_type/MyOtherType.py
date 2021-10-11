@@ -9,8 +9,9 @@ class MyOtherType():
     ##########################
     
     def __init__(self):
-        self._ptr, my_ptr = wrapper.allocate_myothertype()
+        self._ptr, my_ptr, my1_ptr = wrapper.allocate_myothertype()
         self.my = MyType(my_ptr)
+        self.my1 = MyType(my1_ptr)
     
     def __del__(self):
         wrapper.destroy_myothertype(self._ptr)
