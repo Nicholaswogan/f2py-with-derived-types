@@ -4,7 +4,9 @@
 
 This repository shows that, with some effort, you can wrap a fortran derived type.
 
-`myobjects.f90` contains a derived type `mytype`:
+## Simple Type
+
+In the directory [simple_type](./simple_type) `myobjects.f90` contains a derived type `mytype`:
 
 ```fortran
 type mytype
@@ -34,3 +36,7 @@ my = MyType()
 my.arr = [1,2,3]
 print(my.summarr())
 ```
+
+## Nested Type
+
+In the directory [type_in_type](./type_in_type), nested type is demonstrated.
