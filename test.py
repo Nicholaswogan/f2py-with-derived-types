@@ -1,20 +1,33 @@
+# %%
 from MyType import MyType
 import numpy as np
 
+# %%
 my = MyType()
+# get all the attributes
+for attr in dir(my):
+    if not attr.startswith("_"):
+        print(attr)
+# %%
+# get the docstring
+my.arr= np.array([1.0,2.0,3.0])
+my.printarr()
 
+# %%
 # setting and getting
 arr = np.array([1.0,2.0,3.0])
 my.arr = arr
 assert np.all(my.arr == arr)
 print("setters and getters work!")
 
+# %%
 # functions
 my.printarr()
 res = my.sumarr()
 assert res == np.sum(arr)
 print("functions work!")
 
+# %%
 # test a new instance is actually a new instance
 my1 = MyType()
 
