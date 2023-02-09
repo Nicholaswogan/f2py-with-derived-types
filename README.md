@@ -23,7 +23,7 @@ To compile, run
 
 ```
 gfortran -c myobjects.f90
-f2py -c myobjects.o mytype_wrapper.f90 -c _mytype_wrapper
+f2py -c myobjects.o mytype_wrapper.f90 -m _mytype_wrapper
 ```
 
 Then you can use the wrapper with code like 
